@@ -16,7 +16,6 @@ jobs:
           python-version: '3.x'
       - uses: BSFishy/pip-action@v1
         with:
-          packages: package
           requirements: requirements.txt
 
       - name: Run a multi-line script
