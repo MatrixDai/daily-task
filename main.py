@@ -1,8 +1,10 @@
 import argparse
 import requests
 import json
+import urllib
 
 parser = argparse.ArgumentParser()
+parser.add_argument('--title')
 parser.add_argument('--url')
 parser.add_argument('--method')
 parser.add_argument('--host')
@@ -11,6 +13,7 @@ parser.add_argument('--ua')
 parser.add_argument('--al')
 parser.add_argument('--referer')
 parser.add_argument('--result')
+parser.add_argument('--wc')
 args = parser.parse_args()
 
 
@@ -23,6 +26,11 @@ def read_json_by_key(data, key):
     return data
 
 
+def notify(title, desp):
+    form = {"title": title, "desp": desp}
+    requests.request('GET', f'{args.wc}?{urllib.parse.urlencode(form)}')
+
+
 if __name__ == '__main__':
     headers = {
         'Host': args.host,
@@ -32,11 +40,14 @@ if __name__ == '__main__':
         'Referer': args.referer
     }
     response = requests.request(args.method, args.url, headers=headers, data={})
+    result = 'Error'
     if response.status_code == requests.codes.ok:
         data_json = response.text
         if response.text.endswith(');'):
             data_json = response.text.split("(", 1)[1].strip(");")
-        # print(data_json)
         jj = json.loads(data_json)
-        # print(jj['data'])
-        print(read_json_by_key(jj, args.result))
+        result = read_json_by_key(jj, args.result)
+    else:
+        result = response.text
+
+    notify(args.title, result)
