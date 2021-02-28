@@ -20,4 +20,4 @@ jobs:
 
       - name: Run a multi-line script
         run: |
-          python main.py --method='S1_METHOD' --url='S1_URL' --host='S1_HOST' --cookie='S1_COOKIE' --al='S1_AL' --ua='S1_UA' --referer='S1_REFERER' --result='S1_RESULT'
+          python main.py --method='${{ secrets.S1_METHOD }}' --url='${{ secrets.S1_URL }}' --host='${{ secrets.S1_HOST }}' --cookie='${{ secrets.S1_COOKIE }}' --al='${{ secrets.S1_AL }}' --ua='${{ secrets.S1_UA }}' --referer='${{ secrets.S1_REFERER }}' --result='${{ secrets.S1_RESULT }}'
