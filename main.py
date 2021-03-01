@@ -40,7 +40,6 @@ if __name__ == '__main__':
         'Referer': args.referer
     }
     response = requests.request(args.method, args.url, headers=headers, data={})
-    print(response.text)
     result = 'Error'
     if response.status_code == requests.codes.ok:
         data_json = response.text
