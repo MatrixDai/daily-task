@@ -12,6 +12,7 @@ parser.add_argument('--cookie')
 parser.add_argument('--ua')
 parser.add_argument('--al')
 parser.add_argument('--referer')
+parser.add_argument('--payload')
 parser.add_argument('--result')
 parser.add_argument('--wc')
 args = parser.parse_args()
@@ -36,10 +37,16 @@ if __name__ == '__main__':
         'Host': args.host,
         'Cookie': args.cookie,
         'User-Agent': args.ua,
-        'Accept-Language': args.al,
-        'Referer': args.referer
+        'Accept-Language': args.al
     }
-    response = requests.request(args.method, args.url, headers=headers, data={})
+    if args.referer:
+        headers['Referer'] = args.referer
+
+    data = {}
+    if args.payload:
+        data = args.payload
+
+    response = requests.request(args.method, args.url, headers=headers, data=data)
     result = 'Error'
     if response.status_code == requests.codes.ok:
         data_json = response.text
