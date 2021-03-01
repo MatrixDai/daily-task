@@ -1,8 +1,6 @@
 name: Daily task S2
 
 on:
-  schedule:
-    - cron:  '0 2 * * *'
   workflow_dispatch:
 
 jobs:
@@ -20,4 +18,4 @@ jobs:
 
       - name: Run a multi-line script
         run: |
-          python main.py --wc='${{ secrets.WC_URL }}' --title='${{ secrets.S2_TITLE }}' --method='${{ secrets.S2_METHOD }}' --url='${{ secrets.S2_URL }}' --host='${{ secrets.S2_HOST }}' --cookie='${{ secrets.S2_COOKIE }}' --al='${{ secrets.S2_AL }}' --ua='${{ secrets.S2_UA }}' --referer='${{ secrets.S2_REFERER }}' --result='${{ secrets.S2_RESULT }}' --payload='${{ secrets.S2_PAYLOAD }}'
+          python v2.py --wc='${{ secrets.WC_URL }}' --title='${{ secrets.S2_TITLE }}' --method='${{ secrets.S2_METHOD }}' --url='${{ secrets.S2_URL }}' --host='${{ secrets.S2_HOST }}' --cookie='${{ secrets.S2_COOKIE }}' --al='${{ secrets.S2_AL }}' --ua='${{ secrets.S2_UA }}' --referer='${{ secrets.S2_REFERER }}' --result='${{ secrets.S2_RESULT }}' --payload='${{ secrets.S2_PAYLOAD }}'
