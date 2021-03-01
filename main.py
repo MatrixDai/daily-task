@@ -47,6 +47,9 @@ if __name__ == '__main__':
         data = args.payload
 
     response = requests.request(args.method, args.url, headers=headers, data=data)
+    notify(args.title, response.text)
+
+    """
     result = 'Error'
     if response.status_code == requests.codes.ok:
         data_json = response.text
@@ -58,3 +61,4 @@ if __name__ == '__main__':
         result = response.text
 
     notify(args.title, result)
+    """
