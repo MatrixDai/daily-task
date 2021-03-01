@@ -1,10 +1,8 @@
 name: Daily task
 
 on:
-  push:
-    branches: [ main ]
   schedule:
-    - cron:  '* 9 * * *'
+    - cron:  '* 2 * * *'
   workflow_dispatch:
 
 jobs:
